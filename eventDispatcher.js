@@ -23,10 +23,14 @@ class InputUI {
             this.dispatcher[i] = config[i].dispatcher;
             this.action[i] = config[i].action;
 
-            window.addEventListener(this.action[i], ev => {
-                ev.code == this.dispatcher[i] && window.dispatchEvent(this.event[i]);
-            });
+            // window.addEventListener(this.action[i], ev => {
+            //     ev.code == this.dispatcher[i] && window.dispatchEvent(this.event[i]);
+            // });
         }
+        window.addEventListener('keydown', ev => {
+            let i = this.dispatcher.indexOf(ev.code);
+            i != -1 && window.dispatchEvent(this.event[i]);
+        });
     }
 
     //for changing the input of the event during the execution of code

@@ -22,6 +22,9 @@ _FEATURES:_
 
 ##### IN FUTURE:
 * Dispatch an event directly from JS code by the name of the event
+* Add more types of listeners
+* Key combinations (like Ctrl-C)
+* Add properties to pass with the events (blobs, )
 
 
 ###### [...] much more is comming
