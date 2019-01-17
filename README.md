@@ -19,12 +19,33 @@ _FEATURES:_
 * 3 types of listener [keydown | keyup | keypress]
 * Change the key that dispatches the event during execution of the interface
 * Get the key that dispatches the event from the personalized event name
+* Dispatch an event directly from JS code by the name of the event
+* Exportable configuration
+* [Adding | deleting] events during runtime
+
+_FUNCTIONS_
+-
+* getEventIndex( eventName )
+```
+Gets the index from the running config of the event "eventName"
+```
+* addEvent( Object )
+```
+Add a new event to the actual executing events (in the moment you add the event it can be used)
+```
+* dispatchEvent(eventName)
+* changeDispatcher(eventName, key)
+* deleteEvent(eventName)
+* getConfig()
+* getEventProperties(eventName)
 
 ##### IN FUTURE:
-* Dispatch an event directly from JS code by the name of the event
+* Function for adding event listeners
 * Add more types of listeners
 * Key combinations (like Ctrl-C)
-* Add properties to pass with the events (blobs, )
+* Add properties to pass with the events (bubbles...)
+
+
 
 
 ###### [...] much more is comming
