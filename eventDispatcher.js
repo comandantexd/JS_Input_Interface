@@ -29,33 +29,35 @@ class InputUI {
             this.dispatcher[i] = config[i].dispatcher;
             this.action[i] = config[i].action || 'keydown';
         }
+
+        let that = this;
         window.addEventListener('keydown', ev => {
-            let i = this.dispatcher.indexOf(ev.code);
-            i != -1 && window.dispatchEvent(this._event[i]);
+            let i = that.getEventIndex(ev.code, 'dispatcher');
+            i != -1 && that.dispatchEvent(that.name[i]);
         });
     }
 
     // get the index of the event eventName
-    getEventIndex(eventName) {
-        let index = this.name.indexOf(eventName);
+    getEventIndex(eventName, search) {
+        let index = search != 'dispatcher' ? this.name.indexOf(eventName) : this.dispatcher.indexOf(eventName);
         return index;
-    }
-
-    // create a new personalized event
-    addEvent({name, dispatcher, action}) {
-        //only for maintaining the config updated por exportation
-        this._config = [...this._config, {
-            name: this.name[this._length] = name,
-            dispatcher: this.dispatcher[this._length] = dispatcher,
-            action: this.action[this._length++] = action
-        }];
-        this._event[this._length] = new Event(name);
     }
 
     // dispatch an event by its alias
     dispatchEvent(eventName) {
         let i = this.getEventIndex(eventName);
         i != -1 ? window.dispatchEvent(this._event[i]) : console.error(`custom event "${eventName}" does not exist`);
+    }
+
+    // create a new personalized event
+    addEvent({name, dispatcher, action}) {
+        //only for maintaining the config updated por exportation
+        this._config = [...this._config, {
+            eventName: this.name[this._length] = name,
+            dispatcher: this.dispatcher[this._length] = dispatcher,
+            action: this.action[this._length] = action
+        }];
+        this._event[this._length++] = new Event(name);
     }
 
     // for changing the input of the event during the execution of code
@@ -90,7 +92,7 @@ class InputUI {
     getEventProperties(eventName) {
         let i = this.getEventIndex(eventName);
         return i != -1 ? {
-            name: this.name[i],
+            eventName: this.name[i],
             dispatcher: this.dispatcher[i],
             action: this.action[i]
         } : console.error(`custom event "${eventName}" does not exist`);
