@@ -99,5 +99,5 @@ class InputUI {
     }
 }
 
-//Assign the class to a variable and apssing the options for the events.
+//Assign the class to a variable and passing the options for the events.
 //unsafeWindow.inputui = new InputUI(INPUT_CONFIG);
